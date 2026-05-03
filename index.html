@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniCraft Enterprises — App Development Studio</title>
+    <meta name="description" content="OmniCraft Enterprises builds thoughtful, beautifully designed mobile apps. Home of Ellie's Light and Reflexwright.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAF7;
+            --color-text: #1A1A18;
+            --color-text-muted: #6B6B64;
+            --color-accent: #2D5A3D;
+            --color-accent-light: #E8F0EB;
+            --color-warm: #C4956A;
+            --color-warm-light: #FFF5ED;
+            --color-border: #E5E4DF;
+            --color-card: #FFFFFF;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            font-weight: 400;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 247, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-logo span { color: var(--color-accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--color-accent); }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            line-height: 1.15;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-accent);
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .hero-cta:hover { background: #234A30; transform: translateY(-1px); }
+
+        /* ── Divider ── */
+        .divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-warm);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.015em;
+        }
+
+        .section-desc {
+            color: var(--color-text-muted);
+            font-size: 1.05rem;
+            max-width: 520px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        /* ── Apps ── */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .app-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+
+        .app-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-icon.light {
+            background: linear-gradient(135deg, #FFF5ED, #FFE8D4);
+            color: var(--color-warm);
+        }
+
+        .app-icon.reflex {
+            background: linear-gradient(135deg, #E8F0EB, #D0E4D7);
+            color: var(--color-accent);
+        }
+
+        .app-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .app-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            background: var(--color-warm-light);
+            color: var(--color-warm);
+        }
+
+        .app-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ── About ── */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-values { display: grid; gap: 1.5rem; }
+
+        .value-item {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .value-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .value-item p {
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* ── Contact / Footer ── */
+        .contact {
+            background: var(--color-text);
+            color: #fff;
+            padding: 5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact .section-label { color: var(--color-warm); }
+        .contact .section-title { color: #fff; }
+
+        .contact-left p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-link span {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-address {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .contact-address strong {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+        }
+
+        .footer-legal { display: flex; gap: 1.5rem; }
+
+        .footer-legal a {
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .apps-grid { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+            section { padding: 3.5rem 1.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge, .hero h1, .hero p, .hero-cta {
+            animation: fadeUp 0.7s ease-out both;
+        }
+
+        .hero h1 { animation-delay: 0.1s; }
+        .hero p { animation-delay: 0.2s; }
+        .hero-cta { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Omni<span>Craft</span></a>
+            <ul class="nav-links">
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-badge">App Development Studio</div>
+        <h1>We build apps that respect your time and attention</h1>
+        <p>OmniCraft Enterprises is a small, independent studio creating thoughtful mobile experiences. We believe screen time can be meaningful, calming, and life-giving.</p>
+        <a href="#apps" class="hero-cta">See our apps &#8595;</a>
+    </header>
+
+    <hr class="divider">
+
+    <section id="apps">
+        <div class="section-label">Our Apps</div>
+        <h2 class="section-title">What we're building</h2>
+        <p class="section-desc">Each app is designed with care, built to serve a clear purpose, and crafted to feel good every time you open it.</p>
+
+        <div class="apps-grid">
+            <div class="app-card">
+                <div class="app-icon light">&#9788;</div>
+                <div class="app-tag">Coming Soon</div>
+                <h3>Ellie's Light</h3>
+                <p>Details coming soon. Ellie's Light is currently in active development at OmniCraft Enterprises.</p>
+            </div>
+
+            <div class="app-card">
+                <div class="app-icon reflex">&#9881;</div>
+                <div class="app-tag">Coming Soon</div>
+                <h3>Reflexwright</h3>
+                <p>Details coming soon. Reflexwright is currently in active development at OmniCraft Enterprises.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="about">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Small studio, big intention</h2>
+
+        <div class="about-content">
+            <div class="about-text">
+                <p>OmniCraft Enterprises is an independent app development studio based in New York City. We're a small team with a simple belief: the apps people use every day should make their lives better, not worse.</p>
+                <p>We design and build mobile applications that are modern, accessible, and genuinely useful. Every product we ship reflects our commitment to quality, thoughtful design, and respect for the people who use it.</p>
+                <p>We're not trying to capture your attention. We're trying to earn your trust.</p>
+            </div>
+
+            <div class="about-values">
+                <div class="value-item">
+                    <h4>Calm by design</h4>
+                    <p>No dark patterns, no attention traps. Our apps are built to be used and set down without guilt.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Quality over quantity</h4>
+                    <p>We'd rather ship two great apps than twenty mediocre ones. Every detail matters.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Privacy first</h4>
+                    <p>We respect your data. We don't sell it, exploit it, or build profiles from it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="contact-left">
+                <div class="section-label">Get in Touch</div>
+                <h2 class="section-title">Let's talk</h2>
+                <p>Whether you have a question about one of our apps, want to report an issue, or just want to say hello, we'd love to hear from you.</p>
+
+                <div class="contact-link">
+                    <span>General inquiries</span>
+                    admin@omnicraft-ent.com
+                </div>
+                <div class="contact-link">
+                    <span>Ellie's Light support</span>
+                    ellieslight-support@omnicraft-ent.com
+                </div>
+                <div class="contact-link">
+                    <span>Reflexwright support</span>
+                    reflexwright-support@omnicraft-ent.com
+                </div>
+                <div class="contact-link">
+                    <span>Privacy inquiries</span>
+                    ellieslight-privacy@omnicraft-ent.com
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <div class="contact-address">
+                    <strong>OmniCraft Enterprises LLC</strong><br>
+                    Bronx, New York<br>
+                    United States
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-copy">&copy; 2026 OmniCraft Enterprises LLC. All rights reserved.</div>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
